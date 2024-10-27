@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Animal extends Model
 {
+    protected $fillable = [
+        'name',
+        'age',
+        'species',
+        'cage_id',
+        'description'
+    ];
     //
     public function cage(): BelongsTo
     {

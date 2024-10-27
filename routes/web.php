@@ -8,5 +8,9 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::resource('animals', AnimalController::class);
 Route::resource('cages', CageController::class);
+Route::resource('animals', AnimalController::class);
+
+Route::get('/', function () {
+    return redirect('/cages');
+});
