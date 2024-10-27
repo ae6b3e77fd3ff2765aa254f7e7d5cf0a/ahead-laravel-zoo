@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Animal;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCageRequest extends FormRequest
+class UpdateAnimalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,7 @@ class StoreCageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'capacity' => 'required|integer',
+            //
         ];
     }
 }

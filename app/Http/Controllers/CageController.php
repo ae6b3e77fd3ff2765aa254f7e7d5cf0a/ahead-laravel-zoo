@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCageRequest;
-use App\Http\Requests\UpdateCageRequest;
+use App\Http\Requests\Cage\StoreCageRequest;
+use App\Http\Requests\Cage\UpdateCageRequest;
 use App\Models\Cage;
-use Illuminate\Http\Request;
 
 class CageController extends Controller
 {
@@ -29,7 +28,7 @@ class CageController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Animal a newly created resource in storage.
      */
     public function store(StoreCageRequest $request)
     {

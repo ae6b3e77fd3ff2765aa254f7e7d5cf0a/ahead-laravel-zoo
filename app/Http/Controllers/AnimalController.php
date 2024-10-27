@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAnimalRequest;
-use App\Http\Requests\UpdateAnimalRequest;
+use App\Http\Requests\Animal\StoreAnimalRequest;
+use App\Http\Requests\Animal\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\Cage;
-use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
@@ -31,7 +30,7 @@ class AnimalController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Animal a newly created resource in storage.
      */
     public function store(StoreAnimalRequest $request)
     {
