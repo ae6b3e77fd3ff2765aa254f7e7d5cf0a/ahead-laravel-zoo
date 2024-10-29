@@ -8,17 +8,16 @@
         @csrf
         @method('PUT')
 
-        <div class="mt-3">
+        <div class="mb-3">
             <label class="form-label" for="name">Табличка:</label>
             <input class="form-control" type="text" name="name" id="title" value="{{ old('title', $cage->title) }}" required>
         </div>
-
-        <div class="mt-3">
+        <div class="mb-3">
             <label class="form-label" for="size">Размер:</label>
-            <textarea class="form-control" name="size" id="size">{{ old('size', $cage->size) }}</textarea>
+            <input class="form-control" type="number" min="0" max="100" step="1" name="size" id="size" required value="{{ old('size', $cage->size) }}">
         </div>
         <div class="btn-group">
-            <button class="btn btn-primary" type="submit">Обновить информацию о клетке</button>
+            <button class="btn btn-primary" type="submit">Редактировать клетку</button>
             <a class="btn btn-primary" href="{{ route('cages.index') }}">Назад к клеткам</a>
         </div>
     </form>

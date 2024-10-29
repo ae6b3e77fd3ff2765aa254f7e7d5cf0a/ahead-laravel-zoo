@@ -23,7 +23,8 @@
 
         <div class="mb-3" >
             <label class="form-label" for="size">Размер:</label>
-            <input class="form-control" type="number" min="0" max="100" step="1" placeholder="Размер..." name="size" id="size" required value="{{ old('size') }}">
+            <input class="form-control" type="number" min="0" max="100" step="1" placeholder="Размер..." name="size"
+                   id="size" required value="{{ old('size') }}">
         </div>
         <div class="btn-group">
             <button class="btn btn-primary mb-3" type="submit">Добавить клетку</button>

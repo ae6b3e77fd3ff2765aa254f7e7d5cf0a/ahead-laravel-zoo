@@ -14,15 +14,17 @@
         </div>
     @endif
     <form action="{{ route('animals.store') }}" enctype="multipart/form-data" method="POST">
-        @csrf <!-- Защита от CSRF-атак -->
+        @csrf
         <div class="mb-3">
             <label class="form-label" for="name">Имя:</label>
-            <input class="form-control" type="text" name="name" id="name" placeholder="Имя..." value="{{ old('name') }}" required>
+            <input class="form-control" type="text" name="name" id="name" placeholder="Имя..." value="{{ old('name') }}"
+                   required>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="name">Вид:</label>
-            <input class="form-control" type="text" name="species" id="species" placeholder="Вид..." value="{{ old('species') }}" required>
+            <input class="form-control" type="text" name="species" id="species" placeholder="Вид..."
+                   value="{{ old('species') }}" required>
         </div>
 
         <div class="mb-3">
@@ -33,7 +35,8 @@
 
         <div class="mb-3">
             <label class="form-label" for="description">Описание:</label>
-            <textarea class="form-control" name="description" placeholder="Описание..." id="description">{{ old('description') }}</textarea>
+            <textarea class="form-control" name="description" placeholder="Описание..."
+                      id="description">{{ old('description') }}</textarea>
         </div>
 
         <div class="mb-3">
