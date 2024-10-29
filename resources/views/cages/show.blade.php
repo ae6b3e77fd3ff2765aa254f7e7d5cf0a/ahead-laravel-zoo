@@ -16,9 +16,6 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     @endif
     <div class="row align-content-center">
@@ -33,44 +30,49 @@
         </div>
         <div class="col">
             <h2>Животные</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Животное</th>
-                    <th scope="col">Управление</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($cage->animals as $animal)
+            @if(count($cage->animals) < 1)
+                <p> Пока ничего нет :( </p>
+            @else
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th scope="row">{{ $animal->id }}</th>
-                        <td><a class="link-info" href="{{ route('animals.show', $animal->id) }}">{{ $animal->name }}</a>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a class="btn btn-primary"
-                                   href="{{ route('animals.edit', $animal->id) }}">Редактировать</a>
-                                <form action="{{ route('cages.animals.delete', $animal->id) }}" method="POST"
-                                      style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-primary" type="submit">Удалить из клетки</button>
-                                </form>
-                                <form action="{{ route('animals.destroy', $animal->id) }}" method="POST"
-                                      style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-primary" type="submit">Просто Удалить</button>
-                                </form>
-                            </div>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Животное</th>
+                        <th scope="col">Управление</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <a class="btn btn-primary" href="{{ route('animals.create') }}">Добавить животное</a>
+                    </thead>
+                    <tbody>
+                    @foreach ($cage->animals as $animal)
+                        <tr>
+                            <th scope="row">{{ $animal->id }}</th>
+                            <td><a class="link-info"
+                                   href="{{ route('animals.show', $animal->id) }}">{{ $animal->name }}</a>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary"
+                                       href="{{ route('animals.edit', $animal->id) }}">Редактировать</a>
+                                    <form action="{{ route('cages.animals.delete', $animal->id) }}" method="POST"
+                                          style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-primary" type="submit">Удалить из клетки</button>
+                                    </form>
+                                    <form action="{{ route('animals.destroy', $animal->id) }}" method="POST"
+                                          style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-primary" type="submit">Просто Удалить</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <a class="btn btn-primary" href="{{ route('animals.create') }}">Добавить животное</a>
         </div>
+        @endif
     </div>
     <a class="btn btn-primary" href="{{ route('cages.edit', $cage->id) }}">Редактировать</a>
     <form action="{{ route('cages.destroy', $cage->id) }}" method="POST" style="display:inline;">

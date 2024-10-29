@@ -16,9 +16,6 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     @endif
     <div class="row">
@@ -31,6 +28,9 @@
         </div>
         <div class="col">
             <h2>Клетки</h2>
+            @if(count($cages) < 1)
+                <p>Пока ничего нет :(</p>
+            @else
             <div class="mt-3">
                 <table class="table">
                     <thead>
@@ -65,6 +65,7 @@
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
     </div>
     <a class="btn btn-primary" href="{{ route('cages.create') }}">Создать клетку</a>

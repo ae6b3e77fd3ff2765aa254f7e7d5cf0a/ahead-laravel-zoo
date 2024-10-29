@@ -16,9 +16,6 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     @endif
     <form action="{{ route('cages.store') }}" method="POST">
@@ -35,7 +32,7 @@
                    id="size" required value="{{ old('size') }}">
         </div>
         <div class="btn-group">
-            <button class="btn btn-primary mb-3" type="submit">Добавить клетку</button>
+            <button class="btn btn-primary" type="submit">Добавить клетку</button>
             <a class="btn btn-primary" href="{{ route('cages.index') }}">Назад к клеткам</a>
         </div>
     </form>

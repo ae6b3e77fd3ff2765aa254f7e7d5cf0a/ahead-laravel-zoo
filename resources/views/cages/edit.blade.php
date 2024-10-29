@@ -16,9 +16,6 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     @endif
     <form action="{{ route('cages.update', $cage->id) }}" method="POST">
@@ -27,7 +24,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="name">Табличка:</label>
-            <input class="form-control" type="text" name="name" id="title" value="{{ old('title', $cage->title) }}" required>
+            <input class="form-control" type="text" name="title" id="title" value="{{ old('title', $cage->title) }}" required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="size">Размер:</label>
