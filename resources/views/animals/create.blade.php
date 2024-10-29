@@ -49,8 +49,9 @@
             <label class="form-label" for="image">Аватарка:</label>
             <input class="form-control" type="file" name="image" id="image" accept="image/*">
         </div>
-        <button class="form-control" type="submit">Добавить животное</button>
+        <div class="btn-group">
+            <button class="form-control" type="submit">Добавить животное</button>
+            <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
+        </div>
     </form>
-
-    <a href="{{ route('animals.index') }}">Назад к животным</a>
 @endsection

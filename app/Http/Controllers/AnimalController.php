@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Animal;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Animal\StoreAnimalRequest;
 use App\Http\Requests\Animal\UpdateAnimalRequest;
 use App\Models\Animal;

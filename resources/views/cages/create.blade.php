@@ -25,9 +25,9 @@
             <label class="form-label" for="size">Размер:</label>
             <input class="form-control" type="number" min="0" max="100" step="1" placeholder="Размер..." name="size" id="size" required value="{{ old('size') }}">
         </div>
-
-        <button class="btn btn-primary mb-3" type="submit">Добавить клетку</button>
+        <div class="btn-group">
+            <button class="btn btn-primary mb-3" type="submit">Добавить клетку</button>
+            <a class="btn btn-primary" href="{{ route('cages.index') }}">Назад к клеткам</a>
+        </div>
     </form>
-
-    <a class="btn btn-primary" href="{{ route('cages.index') }}">Назад к клеткам</a>
 @endsection

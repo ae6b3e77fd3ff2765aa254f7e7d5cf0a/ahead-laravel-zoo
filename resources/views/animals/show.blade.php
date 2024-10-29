@@ -27,7 +27,9 @@
     <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
-        <button class="btn btn-primary" type="submit">Удалить</button>
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">Удалить</button>
+            <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
+        </div>
     </form>
-    <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
 @endsection

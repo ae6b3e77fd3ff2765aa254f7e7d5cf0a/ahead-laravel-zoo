@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Animal\AnimalController;
-use App\Http\Controllers\Cage\CageController;
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 

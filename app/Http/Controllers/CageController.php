@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Cage;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Cage\StoreCageRequest;
 use App\Http\Requests\Cage\UpdateCageRequest;
 use App\Models\Animal;

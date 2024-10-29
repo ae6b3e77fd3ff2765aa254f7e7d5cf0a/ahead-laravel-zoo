@@ -40,13 +40,15 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-primary"
-                                       href="{{ route('cages.edit', $cage->id) }}">Редактировать</a>
                                     <form action="{{ route('cages.destroy', $cage->id) }}" method="POST"
                                           style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-primary" type="submit">Удалить</button>
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary"
+                                               href="{{ route('cages.edit', $cage->id) }}">Редактировать</a>
+                                            <button class="btn btn-primary" type="submit">Удалить</button>
+                                        </div>
                                     </form>
                                 </div>
                             </td>

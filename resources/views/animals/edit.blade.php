@@ -17,9 +17,9 @@
             <label for="description">Описание:</label>
             <textarea name="description" id="description">{{ old('description', $animal->description) }}</textarea>
         </div>
-
-        <button type="submit">Обновить информацио о животном</button>
+        <div class="btn-group">
+            <button type="submit">Обновить информацио о животном</button>
+            <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
+        </div>
     </form>
-
-    <a href="{{ route('animals.index') }}">Назад к животным</a>
 @endsection

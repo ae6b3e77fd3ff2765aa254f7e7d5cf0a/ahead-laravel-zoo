@@ -35,10 +35,9 @@
 <div class="wrapper">
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid"></div>
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">🐘 Зоопарк</a>
                 <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('cages.index') }}">Главная</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('animals.index') }}">Животные</a></li>
                 </ul>
             @auth
@@ -47,7 +46,7 @@
                     <button type="submit" class="btn btn-primary">Выйти</button>
                 </form>
             @endauth
-            <div>
+            </div>
         </nav>
     </header>
     <div class="wrapper">
