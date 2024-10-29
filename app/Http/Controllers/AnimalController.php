@@ -43,7 +43,7 @@ class AnimalController extends Controller
         $data['path_to_image'] = $path;
         unset($data['image']);
         Animal::create($data);
-        return redirect()->route('animals.index')->with('success', 'Animal created successfully.');
+        return redirect()->route('animals.index')->with('success', 'Новое животное успешно создано.');
     }
 
     /**
@@ -74,7 +74,7 @@ class AnimalController extends Controller
         //
         $animal = Animal::findOrFail($id);
         $animal->update($request->validated());
-        return redirect()->route('animals.index')->with('success', 'Animal updated successfully.');
+        return redirect()->route('animals.show', $id)->with('success', 'Животное успешно отредактировано');
     }
 
     public function deleteFromCage(string $id)
@@ -82,7 +82,7 @@ class AnimalController extends Controller
         $animal = Animal::findOrFail($id);
         $animal->cage_id = null;
         $animal->save();
-        return redirect()->route('animals.index')->with('success', 'Animal deleted successfully.');
+        return redirect()->route('animals.index')->with('success', 'Животное успешно удалено из клетки.');
     }
     /**
      * Remove the specified resource from storage.
@@ -92,6 +92,6 @@ class AnimalController extends Controller
         //
         $animal = Animal::findOrFail($id);
         $animal->delete();
-        return redirect()->route('animals.index')->with('success', 'Animal deleted successfully.');
+        return redirect()->route('animals.index')->with('success', 'Животное успешно удалено.');
     }
 }
