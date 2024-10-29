@@ -10,7 +10,7 @@ class Cage extends Model
     //
     protected $fillable = [
         'title',
-        'capacity',
+        'size',
     ];
     public function animals(): HasMany
     {

@@ -12,7 +12,8 @@ class Animal extends Model
         'age',
         'species',
         'cage_id',
-        'description'
+        'description',
+        'path_to_image'
     ];
     //
     public function cage(): BelongsTo

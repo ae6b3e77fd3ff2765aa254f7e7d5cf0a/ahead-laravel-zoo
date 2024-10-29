@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cage;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Cage\StoreCageRequest;
 use App\Http\Requests\Cage\UpdateCageRequest;
+use App\Models\Animal;
 use App\Models\Cage;
 
 class CageController extends Controller
@@ -34,7 +36,7 @@ class CageController extends Controller
     {
         //
         Cage::create($request->validated());
-        return redirect()->route('cages.index')->with('success', 'Cage created successfully.');
+        return redirect()->route('cages.index')->with('success', 'Новая клетка успешно создана.');
     }
 
     /**
@@ -64,8 +66,12 @@ class CageController extends Controller
     {
         //
         $cage = Cage::findOrFail($id);
-        $cage->update($request->validated());
-        return redirect()->route('cages.index')->with('success', 'Cage updated successfully.');
+        $data = $request->validated();
+        if ($data->size < $cage->size) {
+            return redirect()->route('cages.edit')->withErrors('Размер клетки меньше, чем в ней проживает животных.');
+        }
+        $cage->update($data);
+        return redirect()->route('cages.index')->with('success', 'Информация о клетке успешно обновлена.');
     }
 
     /**
@@ -75,7 +81,10 @@ class CageController extends Controller
     {
         //
         $cage = Cage::findOrFail($id);
+        if (Animal::where('cage_id', $cage->id)->exists()) {
+            return redirect()->route('cages.index')->withErrors('В клетке проживают животные.');
+        }
         $cage->delete();
-        return redirect()->route('cages.index')->with('success', 'Cage deleted successfully.');
+        return redirect()->route('cages.index')->with('success', 'Информация о клетке успешно удалена.');
     }
 }

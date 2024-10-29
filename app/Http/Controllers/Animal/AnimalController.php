@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Animal;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Animal\StoreAnimalRequest;
 use App\Http\Requests\Animal\UpdateAnimalRequest;
 use App\Models\Animal;
@@ -15,8 +16,9 @@ class AnimalController extends Controller
     public function index()
     {
         //
-        $animals = Animal::all();
-        return view('animals.index', compact('animals'));
+        $animalsWithCages = Animal::whereNot('cage_id', null)->get();
+        $animalsWithoutCages = Animal::where('cage_id', null)->get();
+        return view('animals.index', compact('animalsWithCages', 'animalsWithoutCages'));
     }
 
     /**
@@ -24,7 +26,6 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
         $cages = Cage::all();
         return view('animals.create', compact('cages'));
     }
@@ -34,8 +35,15 @@ class AnimalController extends Controller
      */
     public function store(StoreAnimalRequest $request)
     {
-        //
-        Animal::create($request->validated());
+        $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+        } else {
+            $path = public_path('images/default.jpg');
+        }
+        $data['path_to_image'] = $path;
+        unset($data['image']);
+        Animal::create($data);
         return redirect()->route('animals.index')->with('success', 'Animal created successfully.');
     }
 
@@ -45,7 +53,7 @@ class AnimalController extends Controller
     public function show(string $id)
     {
         //
-        $animal = Animal::findOrFail($id);
+        $animal = Animal::with('cage')->findOrFail($id);
         return view('animals.show', compact('animal'));
     }
 
@@ -70,6 +78,13 @@ class AnimalController extends Controller
         return redirect()->route('animals.index')->with('success', 'Animal updated successfully.');
     }
 
+    public function deleteFromCage(string $id)
+    {
+        $animal = Animal::findOrFail($id);
+        $animal->cage_id = null;
+        $animal->save();
+        return redirect()->route('animals.index')->with('success', 'Animal deleted successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */

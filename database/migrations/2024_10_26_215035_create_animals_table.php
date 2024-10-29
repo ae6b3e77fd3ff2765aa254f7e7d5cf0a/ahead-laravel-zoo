@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('species');
             $table->integer('age');
             $table->text('description');
-            $table->foreignId('cage_id')->constrained()->onDelete('cascade');
+            $table->string('path_to_image')->nullable();
+            $table->foreignId('cage_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

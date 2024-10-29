@@ -1,3 +1,24 @@
-@tailwind base;
+/*@tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities;*/
+
+html, body {
+    height: 100%;
+}
+
+/* Используем Flexbox для размещения контента и футера */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота 100% от высоты окна */
+}
+
+.content {
+    flex: 1; /* Позволяет контенту занимать оставшееся пространство */
+}
+
+.footer {
+    background-color: #f8f9fa; /* Цвет фона футера */
+    padding: 20px; /* Отступы */
+    text-align: center; /* Выравнивание текста по центру */
+}

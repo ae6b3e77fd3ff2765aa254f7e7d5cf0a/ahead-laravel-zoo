@@ -4,31 +4,40 @@
 
 @section('content')
     <h1>Создать животное</h1>
-    <form action="{{ route('animals.store') }}" method="POST">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('animals.store') }}" enctype="multipart/form-data" method="POST">
         @csrf <!-- Защита от CSRF-атак -->
-
-        <div>
-            <label for="name">Имя:</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+        <div class="mb-3">
+            <label class="form-label" for="name">Имя:</label>
+            <input class="form-control" type="text" name="name" id="name" placeholder="Имя..." value="{{ old('name') }}" required>
         </div>
 
-        <div>
-            <label for="name">Вид:</label>
-            <input type="text" name="species" id="species" value="{{ old('species') }}" required>
+        <div class="mb-3">
+            <label class="form-label" for="name">Вид:</label>
+            <input class="form-control" type="text" name="species" id="species" placeholder="Вид..." value="{{ old('species') }}" required>
         </div>
 
-        <div>
-            <label for="name">Возраст:</label>
-            <input type="number" min="0" max="100" name="age" id="age" value="{{ old('age') ?? 0 }}" required>
+        <div class="mb-3">
+            <label class="form-label" for="name">Возраст:</label>
+            <input class="form-control" type="number" min="0" max="100" name="age" id="age" placeholder="Возраст..."
+                   value="{{ old('age') }}" required>
         </div>
 
-        <div>
-            <label for="description">Описание:</label>
-            <textarea name="description" id="description">{{ old('description') }}</textarea>
+        <div class="mb-3">
+            <label class="form-label" for="description">Описание:</label>
+            <textarea class="form-control" name="description" placeholder="Описание..." id="description">{{ old('description') }}</textarea>
         </div>
 
-        <div>
-            <label for="cage_id">Клетка:</label>
+        <div class="mb-3">
+            <label class="form-label" for="cage_id">Клетка:</label>
             <select class="form-control" id="cage_id" name="cage_id">
                 <option value="" disabled selected>Выберите клетку:</option>
                 @foreach($cages as $cage)
@@ -36,8 +45,11 @@
                 @endforeach
             </select>
         </div>
-
-        <button type="submit">Добавить животное</button>
+        <div class="mb-3">
+            <label class="form-label" for="image">Аватарка:</label>
+            <input class="form-control" type="file" name="image" id="image" accept="image/*">
+        </div>
+        <button class="form-control" type="submit">Добавить животное</button>
     </form>
 
     <a href="{{ route('animals.index') }}">Назад к животным</a>

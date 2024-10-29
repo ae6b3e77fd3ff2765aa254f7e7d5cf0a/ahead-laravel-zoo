@@ -4,21 +4,30 @@
 
 @section('content')
     <h1>Создать клетку</h1>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('cages.store') }}" method="POST">
         @csrf
 
-        <div>
-            <label for="name">Табличка:</label>
-            <input type="text" name="title" id="title" value="{{ old('title') }}" required>
+        <div class="mb-3">
+            <label class="form-label" for="name">Табличка:</label>
+            <input class="form-control" type="text" name="title" id="title" placeholder="Название..." value="{{ old('title') }}" required>
         </div>
 
-        <div>
-            <label for="capacity">Вместимость:</label>
-            <input type="text" name="capacity" id="capacity" required value="{{ old('capacity') }}">
+        <div class="mb-3" >
+            <label class="form-label" for="size">Размер:</label>
+            <input class="form-control" type="number" min="0" max="100" step="1" placeholder="Размер..." name="size" id="size" required value="{{ old('size') }}">
         </div>
 
-        <button type="submit">Добавить клетку</button>
+        <button class="btn btn-primary mb-3" type="submit">Добавить клетку</button>
     </form>
 
-    <a href="{{ route('cages.index') }}">Назад к клеткам</a>
+    <a class="btn btn-primary" href="{{ route('cages.index') }}">Назад к клеткам</a>
 @endsection

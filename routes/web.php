@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\CageController;
+use App\Http\Controllers\Animal\AnimalController;
+use App\Http\Controllers\Cage\CageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('cages', CageController::class);
 Route::resource('animals', AnimalController::class);
+Route::delete('animals/{id}/cage', [AnimalController::class, 'deleteFromCage'])->name('cages.animals.delete');
+
 
 Route::get('/', function () {
     return redirect('/cages');

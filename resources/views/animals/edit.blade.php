@@ -14,12 +14,12 @@
         </div>
 
         <div>
-            <label for="description">Description:</label>
+            <label for="description">Описание:</label>
             <textarea name="description" id="description">{{ old('description', $animal->description) }}</textarea>
         </div>
 
-        <button type="submit">Update Animal</button>
+        <button type="submit">Обновить информацио о животном</button>
     </form>
 
-    <a href="{{ route('animals.index') }}">Back to Animals</a>
+    <a href="{{ route('animals.index') }}">Назад к животным</a>
 @endsection

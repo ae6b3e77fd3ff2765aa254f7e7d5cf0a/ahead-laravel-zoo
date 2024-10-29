@@ -23,7 +23,7 @@ class StoreCageRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'capacity' => 'required|integer',
+            'size' => 'required|integer',
         ];
     }
 }
