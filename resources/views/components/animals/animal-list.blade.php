@@ -4,7 +4,6 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Имя</th>
-            <th scope="col">Есть клетка?</th>
             @auth
                 <th scope="col">Управление</th>
             @endauth
@@ -13,7 +12,7 @@
         <tbody>
         @if($animals->isEmpty())
             <tr>
-                <td colspan="{{ auth()->check() ? 3 : 4 }}">Нет данных</td>
+                <td colspan="{{ auth()->check() ? 2 : 3 }}">Нет данных</td>
             </tr>
         @else
             @foreach ($animals as $animal)
