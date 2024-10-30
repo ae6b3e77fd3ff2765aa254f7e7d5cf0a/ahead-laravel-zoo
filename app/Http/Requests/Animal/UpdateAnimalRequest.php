@@ -27,7 +27,8 @@ class UpdateAnimalRequest extends FormRequest
             'age' => 'required|integer|min:0',
             'species' => 'required|string|max:255',
             'cage_id' => 'required|integer|exists:cages,id',
-            'description' => 'required|string|max:255',
+            'gender' => 'required|boolean',
+            'desc' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

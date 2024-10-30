@@ -4,46 +4,21 @@
 
 @section('content')
     <h1>{{ $animal->name }}</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
+    <x-alerts.alert></x-alerts.alert>
     <div class="row align-items-center">
         <div class="col">
-            <h2>Информация</h2>
-            <p><strong>Идентификатор:</strong> {{ $animal->id }}</p>
-            <p><strong>Вид:</strong> {{ $animal->species }}</p>
-            <p><strong>Возраст:</strong> {{ $animal->age }}</p>
-            <p><strong>Информация:</strong> {{ $animal->description }}</p>
-            <p><strong>Создано:</strong> {{ $animal->created_at }}</p>
-            <p><strong>Изменено:</strong> {{ $animal->updated_at }}</p>
-            @if($animal->cage)
-                <p><strong>Клетка:</strong> <a href="{{ route('cages.show', $animal->cage->id) }}">{{ $animal->cage->title  }}</a></p>
-            @endif
+            <x-animals.animal :id="$animal->id" :name="$animal->name" :species="$animal->species" :age="$animal->age"
+                              :image="$animal->image"
+                              :cage="$animal->cage_id"
+                              :desc="$animal->desc"></x-animals.animal>
         </div>
         <div class="col text-center">
             <h2>Аватарка</h2>
-            <img src="{{ asset('storage/' . $animal->path_to_image) }}" alt="{{ $animal->name }} avatar" style="max-width: 100%; height: auto;">
+            <img src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}'s avatar"
+                 style="max-width: 100%; height: auto;">
         </div>
     </div>
-
-    <a class="btn btn-primary" href="{{ route('animals.edit', $animal->id) }}">Редактировать</a>
-    <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline;">
-        @csrf
-        @method('DELETE')
-        <div class="btn-group">
-            <button class="btn btn-primary" type="submit">Удалить</button>
-            <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
-        </div>
-    </form>
+    @auth
+        <x-forms.edit-form :id="$id" :base="$animals"></x-forms.edit-form>
+    @endauth
 @endsection

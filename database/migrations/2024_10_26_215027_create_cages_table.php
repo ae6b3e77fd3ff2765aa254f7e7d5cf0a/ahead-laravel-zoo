@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->integer('size');
             $table->timestamps();
         });

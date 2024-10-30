@@ -1,31 +1,25 @@
 <?php
 
-namespace App\View\Components\Animal;
+namespace App\View\Components\Animals;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Animal extends Component
+class AnimalListItem extends Component
 {
     public int $id;
     public string $name;
-    public int $age;
-    public string $species;
-    public string $desc;
-    public string $image;
+    public bool $hasCage;
     /**
      * Create a new component instance.
      */
-    public function __construct($id, $name, $species, $age, $desc, $image)
+    public function __construct(int $id, string $name, bool $hasCage)
     {
         //
         $this->id = $id;
         $this->name = $name;
-        $this->species = $species;
-        $this->age = $age;
-        $this->desc = $desc;
-        $this->image = $image;
+        $this->hasCage = $hasCage;
     }
 
     /**
@@ -33,6 +27,6 @@ class Animal extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.animal');
+        return view('components.animals.animal-list-item');
     }
 }

@@ -4,20 +4,7 @@
 
 @section('content')
     <h1>Создать животное</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
+    <x-alerts.alert></x-alerts.alert>
     <form action="{{ route('animals.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="mb-3">
@@ -31,7 +18,13 @@
             <input class="form-control" type="text" name="species" id="species" placeholder="Вид..."
                    value="{{ old('species') }}" required>
         </div>
-
+        <div class="mb-3">
+            <label for="gender">Пол:</label>
+            <select name="gender" id="gender">
+                <option value="0">Мужской</option>
+                <option value="1">Женский</option>
+            </select>
+        </div>
         <div class="mb-3">
             <label class="form-label" for="name">Возраст:</label>
             <input class="form-control" type="number" min="0" max="100" name="age" id="age" placeholder="Возраст..."
@@ -39,17 +32,17 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" for="description">Описание:</label>
-            <textarea class="form-control" name="description" placeholder="Описание..."
-                      id="description">{{ old('description') }}</textarea>
+            <label class="form-label" for="desc">Описание:</label>
+            <textarea class="form-control" name="desc" placeholder="Описание..."
+                      id="desc">{{ old('desc') }}</textarea>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="cage_id">Клетка:</label>
             <select class="form-control" id="cage_id" name="cage_id">
-                <option value="" disabled selected>Выберите клетку:</option>
+                <option value="" disabled selected>№ клетки:</option>
                 @foreach($cages as $cage)
-                    <option value="{{ $cage->id }}">{{ $cage->title }}</option>
+                    <option value="{{ $cage->id }}">{{ $cage->name }}</option>
                 @endforeach
             </select>
         </div>

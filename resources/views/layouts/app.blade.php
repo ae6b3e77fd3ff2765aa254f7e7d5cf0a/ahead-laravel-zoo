@@ -12,22 +12,21 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <style>
-        /* Основные стили для страницы */
         html, body {
             height: 100%;
         }
         .wrapper {
-            min-height: 100vh; /* Минимальная высота 100% от высоты окна */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         .content {
-            flex: 1; /* Занимает все доступное пространство */
+            flex: 1;
         }
         .footer {
-            background-color: #f8f9fa; /* Цвет фона футера */
-            padding: 10px 0; /* Отступы */
-            text-align: center; /* Выравнивание текста по центру */
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
         }
     </style>
 </head>

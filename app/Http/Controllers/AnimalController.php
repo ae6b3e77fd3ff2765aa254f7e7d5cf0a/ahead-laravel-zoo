@@ -15,9 +15,8 @@ class AnimalController extends Controller
     public function index()
     {
         //
-        $animalsWithCages = Animal::whereNot('cage_id', null)->get();
-        $animalsWithoutCages = Animal::where('cage_id', null)->get();
-        return view('animals.index', compact('animalsWithCages', 'animalsWithoutCages'));
+        $animals = Animal::paginate(10);
+        return view('animals.index', compact('animals'));
     }
 
     /**
@@ -40,8 +39,7 @@ class AnimalController extends Controller
         } else {
             $path = public_path('images/default.jpg');
         }
-        $data['path_to_image'] = $path;
-        unset($data['image']);
+        $data['image'] = $path;
         Animal::create($data);
         return redirect()->route('animals.index')->with('success', 'Новое животное успешно создано.');
     }

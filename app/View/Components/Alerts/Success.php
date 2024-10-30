@@ -1,23 +1,21 @@
 <?php
 
-namespace App\View\Components\Cage;
+namespace App\View\Components\Alerts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CageListItem extends Component
+class Success extends Component
 {
-    public int $id;
-    public string $name;
+    public string $msg;
     /**
      * Create a new component instance.
      */
-    public function __construct(int $id, string $name)
+    public function __construct(string $msg)
     {
         //
-        $this->id = $id;
-        $this->name = $name;
+        $this->msg = $msg;
     }
 
     /**
@@ -25,6 +23,6 @@ class CageListItem extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cage-list-item');
+        return view('components.alerts.success');
     }
 }

@@ -4,20 +4,7 @@
 
 @section('content')
     <h1>Редактировать животное</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
+    <x-alerts.alert></x-alerts.alert>
     <form action="{{ route('animals.update', $animal->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -27,13 +14,18 @@
             <input class="form-control" type="text" name="name" id="name" placeholder="Имя..."
                    value="{{ old('name', $animal->name) }}" required>
         </div>
-
         <div class="mb-3">
             <label class="form-label" for="name">Вид:</label>
             <input class="form-control" type="text" name="species" id="species" placeholder="Вид..."
                    value="{{ old('species', $animal->species) }}" required>
         </div>
-
+        <div class="mb-3">
+            <label for="gender">Пол:</label>
+            <select name="gender" id="gender">
+                <option value="0">Мужской</option>
+                <option value="1">Женский</option>
+            </select>
+        </div>
         <div class="mb-3">
             <label class="form-label" for="name">Возраст:</label>
             <input class="form-control" type="number" min="0" max="100" name="age" id="age" placeholder="Возраст..."
@@ -41,9 +33,9 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" for="description">Описание:</label>
-            <textarea class="form-control" name="description"
-                      id="description">{{ old('description', $animal->description) }}</textarea>
+            <label class="form-label" for="desc">Описание:</label>
+            <textarea class="form-control" name="desc"
+                      id="description">{{ old('desc', $animal->description) }}</textarea>
         </div>
 
         <div class="mb-3">

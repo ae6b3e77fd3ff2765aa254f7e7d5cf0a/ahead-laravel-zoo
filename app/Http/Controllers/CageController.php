@@ -15,7 +15,7 @@ class CageController extends Controller
     public function index()
     {
         //
-        $cages = Cage::all();
+        $cages = Cage::paginate(10);
         return view('cages.index', compact('cages'));
     }
 
@@ -44,8 +44,9 @@ class CageController extends Controller
     public function show(string $id)
     {
         //
-        $cage = Cage::with('animals')->findOrFail($id);
-        return view('cages.show', compact('cage'));
+        $cage = Cage::findOrFail($id);
+        $animals = Cage::with('animals')->paginate(10);
+        return view('cages.show', compact('cage', 'animals'));
     }
 
     /**

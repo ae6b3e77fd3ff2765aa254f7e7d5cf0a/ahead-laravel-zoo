@@ -1,14 +1,16 @@
 <?php
 
-namespace App\View\Components\Animal;
+namespace App\View\Components\Animals;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
 class AnimalList extends Component
 {
-    public array $animals;
+    public LengthAwarePaginator $animals;
     /**
      * Create a new component instance.
      */
@@ -23,6 +25,6 @@ class AnimalList extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.animal-list');
+        return view('components.animals.animal-list');
     }
 }
