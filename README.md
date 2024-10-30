@@ -55,6 +55,9 @@
 
 ### Демонстрация работы
 
+#### Демка
+[Запись](./demo/videos/demo.mp4)
+
 #### Деплой на RailWay (не работает из-за ограничений после санкций)
 https://ahead-laravel-zoo-production.up.railway.app
 
