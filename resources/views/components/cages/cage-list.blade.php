@@ -11,7 +11,9 @@
         </thead>
         <tbody>
         @if($cages->isEmpty())
-            <tr aria-colspan="{{ auth()->check() ? 2 : 3 }}">Нет данных</tr>
+            <tr>
+                <td colspan="{{ auth()->check() ? 2 : 3 }}">Нет данных</td>
+            </tr>
         @else
             @foreach ($cages as $cage)
                 <x-cages.cage-list-item :id="$cage->id" :name="$cage->name"></x-cages.cage-list-item>

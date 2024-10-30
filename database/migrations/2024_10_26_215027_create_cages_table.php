@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('count')->default(0);
             $table->integer('size');
             $table->timestamps();
         });

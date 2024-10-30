@@ -15,6 +15,6 @@ class CageSeeder extends Seeder
     public function run(): void
     {
         //
-        Cage::factory()->count(10)->hasAnimals(rand(1, 10))->create();
+        Cage::factory()->count(10)->hasAnimals(rand(2, 3))->create();
     }
 }

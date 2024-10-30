@@ -5,7 +5,7 @@
 @section('content')
     <h1>Информация о зоопарке</h1>
     <p>В зоопарке на данный момент проживает {{ DB::table('animals')->count() }} животных. Из
-        них {{ DB::table('animals')->whereNot('cage_id', null)->count() }} в клетках.
+        них {{ DB::table('cages')->sum('count') }} в клетках.
         Имеется {{ DB::table('cages')->count() }} клеток.
     </p>
     <x-alerts.alert></x-alerts.alert>

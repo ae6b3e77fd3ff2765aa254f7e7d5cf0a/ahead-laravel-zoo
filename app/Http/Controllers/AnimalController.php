@@ -6,6 +6,7 @@ use App\Http\Requests\Animal\StoreAnimalRequest;
 use App\Http\Requests\Animal\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\Cage;
+use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
 {
@@ -35,11 +36,8 @@ class AnimalController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-        } else {
-            $path = public_path('images/default.jpg');
+            $data['image'] = $request->file('image')->store('images', 'public');
         }
-        $data['image'] = $path;
         $animal = Animal::create($data);
         return redirect()->back()->with('success', "Новое животное с индексом $animal->id успешно создано.");
     }
@@ -83,6 +81,7 @@ class AnimalController extends Controller
         $animal->save();
         return redirect()->back()->with('success', "Животное с индексом $id успешно удалено из клетки.");
     }
+
     /**
      * Remove the specified resource from storage.
      */

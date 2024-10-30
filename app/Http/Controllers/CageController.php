@@ -67,9 +67,6 @@ class CageController extends Controller
         //
         $cage = Cage::findOrFail($id);
         $data = $request->validated();
-        if ($data['size'] < $cage->size) {
-            return redirect()->back()->withErrors('Размер клетки меньше, чем в ней проживает животных!');
-        }
         $cage->update($data);
         return redirect()->back()->with('success', "Клетка с индексом $id успешно отредактирована.");
     }

@@ -18,7 +18,7 @@ class CageFactory extends Factory
     {
         return [
             "name" => $this->faker->name(),
-            "size" => $this->faker->numberBetween(1,25),
+            "size" => $this->faker->numberBetween(5,25),
         ];
     }
 }

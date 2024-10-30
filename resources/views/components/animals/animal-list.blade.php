@@ -12,7 +12,9 @@
         </thead>
         <tbody>
         @if($animals->isEmpty())
-            <tr aria-colspan="{{ auth()->check() ? 2 : 3 }}">Нет данных</tr>
+            <tr>
+                <td colspan="{{ auth()->check() ? 3 : 4 }}">Нет данных</td>
+            </tr>
         @else
             @foreach ($animals as $animal)
                 <x-animals.animal-list-item :id="$animal->id" :name="$animal->name"
