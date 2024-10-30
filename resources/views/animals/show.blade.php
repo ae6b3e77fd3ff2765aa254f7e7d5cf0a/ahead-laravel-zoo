@@ -12,9 +12,11 @@
                               :cage="$animal->cage_id"
                               :desc="$animal->desc"></x-animals.animal>
         </div>
-        <div class="col">
-            <x-images.avatar :path="$animal->image" :name="$animal->name"></x-images.avatar>
-        </div>
+        @if($animal->image)
+            <div class="col">
+                <x-images.avatar :path="$animal->image" :name="$animal->name"></x-images.avatar>
+            </div>
+        @endif
     </div>
     @auth
         <x-forms.edit-form :id="$animal->id" base="animals"></x-forms.edit-form>

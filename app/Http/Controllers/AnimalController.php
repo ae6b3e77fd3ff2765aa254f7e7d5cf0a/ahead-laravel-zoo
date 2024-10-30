@@ -39,7 +39,7 @@ class AnimalController extends Controller
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         $animal = Animal::create($data);
-        return redirect()->back()->with('success', "Новое животное с индексом $animal->id успешно создано.");
+        return redirect()->route('animals.index')->with('success', "Новое животное с индексом $animal->id успешно создано.");
     }
 
     /**

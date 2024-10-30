@@ -41,6 +41,7 @@
         <div class="mb-3">
             <label class="form-label" for="cage_id">Клетка:</label>
             <select class="form-control" id="cage_id" name="cage_id">
+                <option value="">Без клетки</option>
                 @foreach($cages as $cage)
                     @if($animal->cage_id === $cage->id)
                         <option value="{{ $cage->id }}" selected>{{ $cage->name }}</option>

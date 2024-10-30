@@ -38,12 +38,14 @@
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">🐘 Зоопарк</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('cages.index') }}">Индекс клеток</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('animals.index') }}">Индекс животных</a>
-                    </li>
-                </ul>
+                <div class="d-flex">
+                    <a class="navbar-brand" href="{{ url('/') }}">🐘 Зоопарк</a>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('cages.index') }}">Индекс клеток</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('animals.index') }}">Индекс животных</a>
+                        </li>
+                    </ul>
+                </div>
                 @auth
                     <form class="d-flex" method="POST" action="{{ route('logout') }}" style="display: inline;">
                         @csrf

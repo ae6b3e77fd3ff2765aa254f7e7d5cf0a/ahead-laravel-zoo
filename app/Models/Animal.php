@@ -11,9 +11,6 @@ class Animal extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        'image' => 'images/default.jpg',
-    ];
     protected $fillable = [
         'name',
         'age',

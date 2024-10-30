@@ -13,7 +13,7 @@ Route::resource('cages', CageController::class)->except(['index', 'show'])->midd
 Route::resource('cages', CageController::class)->only(['index', 'show']);
 Route::resource('animals', AnimalController::class)->except(['index', 'show'])->middleware('auth');
 Route::resource('animals', AnimalController::class)->only(['index', 'show']);
-//Route::delete('animals/{id}/cage', [AnimalController::class, 'destroyFromCage'])->name('cages.animals.destroy');
+Route::delete('/animals/{id}/cage', [AnimalController::class, 'destroyFromCage'])->name('animals.cage.destroy');
 
 
 Route::get('/', function () {
