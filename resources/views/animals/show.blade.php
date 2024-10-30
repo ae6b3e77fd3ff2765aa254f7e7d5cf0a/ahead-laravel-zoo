@@ -19,6 +19,6 @@
         </div>
     </div>
     @auth
-        <x-forms.edit-form :id="$id" :base="$animals"></x-forms.edit-form>
+        <x-forms.edit-form :id="$animal->id" base="animals"></x-forms.edit-form>
     @endauth
 @endsection
