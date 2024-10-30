@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class AnimalList extends Component
 {
+    public array $animals;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($animals)
     {
         //
+        $this->animals = $animals;
     }
 
     /**

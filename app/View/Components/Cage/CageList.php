@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class CageList extends Component
 {
+    public array $cages;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($cages)
     {
         //
+        $this->cages = $cages;
     }
 
     /**

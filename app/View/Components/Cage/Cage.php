@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class Cage extends Component
 {
+    public int $id;
+    public string $name;
+    public array $animals;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(int $id, string $name, array $animals)
     {
-        //
+        $this->id = $id;
+        $this->name = $name;
+        $this->animals = $animals;
     }
 
     /**
