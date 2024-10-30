@@ -28,7 +28,7 @@ class StoreAnimalRequest extends FormRequest
             'gender' => 'required|boolean',
             'cage_id' => 'required|integer|exists:cages,id',
             'desc' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

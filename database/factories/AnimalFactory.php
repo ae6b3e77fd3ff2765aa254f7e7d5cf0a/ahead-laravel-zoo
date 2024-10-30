@@ -18,7 +18,7 @@ class AnimalFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => $this->faker->title(),
+            "name" => $this->faker->name(),
             "species" => $this->faker->name(),
             "age" => $this->faker->numberBetween(1, 100),
             "gender" => $this->faker->boolean(),

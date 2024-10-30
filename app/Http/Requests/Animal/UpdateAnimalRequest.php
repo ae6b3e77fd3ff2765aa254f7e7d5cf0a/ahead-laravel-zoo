@@ -29,7 +29,7 @@ class UpdateAnimalRequest extends FormRequest
             'cage_id' => 'required|integer|exists:cages,id',
             'gender' => 'required|boolean',
             'desc' => 'required|string|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

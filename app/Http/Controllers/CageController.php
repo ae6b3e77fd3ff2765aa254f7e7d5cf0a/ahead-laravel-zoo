@@ -66,9 +66,8 @@ class CageController extends Controller
     {
         //
         $cage = Cage::findOrFail($id);
-        $data = $request->validated();
-        $cage->update($data);
-        return redirect()->back()->with('success', "Клетка с индексом $id успешно отредактирована.");
+        $cage->update( $request->validated());
+        return redirect()->route('cages.index')->with('success', "Клетка с индексом $id успешно отредактирована.");
     }
 
     /**
@@ -78,10 +77,7 @@ class CageController extends Controller
     {
         //
         $cage = Cage::findOrFail($id);
-        if (Animal::where('cage_id', $cage->id)->exists()) {
-            return redirect()->back()->withErrors("В клетке с индексом $id ещё проживают животные!");
-        }
         $cage->delete();
-        return redirect()->back()->with('success', "Клетка с индексом $id успешно удалена.");
+        return redirect()->route('cages.index')->with('success', "Клетка с индексом $id успешно удалена.");
     }
 }

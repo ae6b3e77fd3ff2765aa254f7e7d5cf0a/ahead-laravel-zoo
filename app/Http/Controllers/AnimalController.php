@@ -71,15 +71,14 @@ class AnimalController extends Controller
         //
         $animal = Animal::findOrFail($id);
         $animal->update($request->validated());
-        return redirect()->back()->with('success', "Животное с индексом $id успешно отредактировано");
+        return redirect()->route('animals.index')->with('success', "Животное с индексом $id успешно отредактировано");
     }
 
     public function destroyFromCage(string $id)
     {
         $animal = Animal::findOrFail($id);
-        $animal->cage_id = null;
-        $animal->save();
-        return redirect()->back()->with('success', "Животное с индексом $id успешно удалено из клетки.");
+        $animal->update(['cage_id', null]);
+        return redirect()->route('animals.index')->with('success', "Животное с индексом $id успешно удалено из клетки.");
     }
 
     /**
@@ -90,6 +89,6 @@ class AnimalController extends Controller
         //
         $animal = Animal::findOrFail($id);
         $animal->delete();
-        return redirect()->back()->with('success', "Животное с индексом $id успешно удалено.");
+        return redirect()->route('animals.index')->with('success', "Животное с индексом $id успешно удалено.");
     }
 }
