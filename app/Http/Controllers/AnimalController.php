@@ -74,7 +74,7 @@ class AnimalController extends Controller
         return redirect()->back()->with('success', "Животное с индексом $id успешно отредактировано");
     }
 
-    public function deleteFromCage(string $id)
+    public function destroyFromCage(string $id)
     {
         $animal = Animal::findOrFail($id);
         $animal->cage_id = null;

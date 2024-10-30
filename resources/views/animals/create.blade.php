@@ -12,15 +12,14 @@
             <input class="form-control" type="text" name="name" id="name" placeholder="Имя..." value="{{ old('name') }}"
                    required>
         </div>
-
         <div class="mb-3">
             <label class="form-label" for="name">Вид:</label>
             <input class="form-control" type="text" name="species" id="species" placeholder="Вид..."
                    value="{{ old('species') }}" required>
         </div>
         <div class="mb-3">
-            <label for="gender">Пол:</label>
-            <select name="gender" id="gender">
+            <label class="form-label" for="gender">Пол:</label>
+            <select class="form-control" name="gender" id="gender">
                 <option value="0">Мужской</option>
                 <option value="1">Женский</option>
             </select>
@@ -30,13 +29,11 @@
             <input class="form-control" type="number" min="0" max="100" name="age" id="age" placeholder="Возраст..."
                    value="{{ old('age') }}" required>
         </div>
-
         <div class="mb-3">
             <label class="form-label" for="desc">Описание:</label>
             <textarea class="form-control" name="desc" placeholder="Описание..."
                       id="desc">{{ old('desc') }}</textarea>
         </div>
-
         <div class="mb-3">
             <label class="form-label" for="cage_id">Клетка:</label>
             <select class="form-control" id="cage_id" name="cage_id">
@@ -51,7 +48,7 @@
             <input class="form-control" type="file" name="image" id="image" accept="image/*">
         </div>
         <div class="btn-group">
-            <button class="form-control" type="submit">Добавить животное</button>
+            <button class="btn btn-primary" type="submit">Добавить животное</button>
             <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
         </div>
     </form>

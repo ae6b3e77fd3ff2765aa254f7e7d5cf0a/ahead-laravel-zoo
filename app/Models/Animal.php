@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Animal extends Model
 {
     use HasFactory;
-
+    protected $attributes = [
+        'image' => 'images/default.jpg',
+    ];
     protected $fillable = [
         'name',
         'age',
@@ -31,18 +33,16 @@ class Animal extends Model
         parent::boot();
 
         static::created(function ($animal) {
-            if ($animal->cage_id) {
-                $cage = Cage::find($animal->cage_id);
-                $cage->update(['count' => $cage->count + 1]);
-                $cage->save();
+            $cage = $animal->cage;
+            if ($cage) {
+                $cage->increment('count');
             }
         });
 
         static::deleted(function ($animal) {
-            if ($animal->cage_id) {
-                $cage = Cage::find($animal->cage_id);
-                $cage->update(['count' => $cage->count - 1]);
-                $cage->save();
+            $cage = $animal->cage;
+            if ($cage) {
+                $cage->decrement('count');
             }
         });
     }

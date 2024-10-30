@@ -12,10 +12,8 @@
                               :cage="$animal->cage_id"
                               :desc="$animal->desc"></x-animals.animal>
         </div>
-        <div class="col text-center">
-            <h2>Аватарка</h2>
-            <img src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}'s avatar"
-                 style="max-width: 100%; height: auto;">
+        <div class="col">
+            <x-images.avatar :path="$animal->image" :name="$animal->name"></x-images.avatar>
         </div>
     </div>
     @auth
