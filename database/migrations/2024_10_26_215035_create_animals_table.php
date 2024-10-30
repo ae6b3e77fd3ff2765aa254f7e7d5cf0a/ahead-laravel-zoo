@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('species');
             $table->integer('age');
-            $table->text('description');
+            $table->text('desc');
             $table->string('path_to_image')->nullable();
             $table->foreignId('cage_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
