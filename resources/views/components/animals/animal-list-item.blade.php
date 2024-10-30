@@ -8,7 +8,7 @@
     </td>
     @auth
         <td>
-            <x-forms.edit-form-inline :id="$id" base="cages"></x-forms.edit-form-inline>
+            <x-forms.edit-form-inline :id="$id" base="animals"></x-forms.edit-form-inline>
         </td>
     @endauth
 </tr>

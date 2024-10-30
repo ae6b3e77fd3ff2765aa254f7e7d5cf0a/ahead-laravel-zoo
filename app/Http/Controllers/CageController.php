@@ -34,8 +34,8 @@ class CageController extends Controller
     public function store(StoreCageRequest $request)
     {
         //
-        Cage::create($request->validated());
-        return redirect()->route('cages.index')->with('success', ' а.');
+        $cage = Cage::create($request->validated());
+        return redirect()->route('cages.index')->with('success', "Новая клетка с индексом $cage->id успешно создана.");
     }
 
     /**
@@ -45,7 +45,7 @@ class CageController extends Controller
     {
         //
         $cage = Cage::findOrFail($id);
-        $animals = Cage::with('animals')->paginate(10);
+        $animals = Animal::where('cage_id', $id)->paginate(10);
         return view('cages.show', compact('cage', 'animals'));
     }
 
@@ -68,10 +68,10 @@ class CageController extends Controller
         $cage = Cage::findOrFail($id);
         $data = $request->validated();
         if ($data['size'] < $cage->size) {
-            return redirect()->route('cages.edit')->withErrors('Размер клетки меньше, чем в ней проживает животных!');
+            return redirect()->route('cages.edit', $id)->withErrors('Размер клетки меньше, чем в ней проживает животных!');
         }
         $cage->update($data);
-        return redirect()->route('cages.show', $id)->with('success', 'Клетка успешно отредактирована.');
+        return redirect()->route('cages.show', $id)->with('success', "Клетка с индексом $id успешно отредактирована.");
     }
 
     /**
@@ -82,9 +82,9 @@ class CageController extends Controller
         //
         $cage = Cage::findOrFail($id);
         if (Animal::where('cage_id', $cage->id)->exists()) {
-            return redirect()->route('cages.index')->withErrors('В клетке ещё проживают животные!');
+            return redirect()->route('cages.index')->withErrors("В клетке с индексом $id ещё проживают животные!");
         }
         $cage->delete();
-        return redirect()->route('cages.index')->with('success', 'Клетка успешно удалена.');
+        return redirect()->route('cages.index')->with('success', "Клетка с индексом $id успешно удалена.");
     }
 }
