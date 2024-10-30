@@ -2,7 +2,7 @@
     @if (session('success'))
         <x-alerts.success :msg="session('success')"></x-alerts.success>
     @endif
-    @if (session('error'))
-        <x-alerts.error :msg="session('error')"></x-alerts.error>
+    @if (session('errors'))
+            <x-alerts.error-list :errors="session('errors')"></x-alerts.error-list>
     @endif
 </div>

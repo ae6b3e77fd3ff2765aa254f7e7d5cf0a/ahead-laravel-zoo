@@ -20,8 +20,8 @@
                    value="{{ old('species', $animal->species) }}" required>
         </div>
         <div class="mb-3">
-            <label for="gender">Пол:</label>
-            <select name="gender" id="gender">
+            <label class="form-label" for="gender">Пол:</label>
+            <select class="form-control" name="gender" id="gender">
                 <option value="0">Мужской</option>
                 <option value="1">Женский</option>
             </select>
@@ -35,15 +35,18 @@
         <div class="mb-3">
             <label class="form-label" for="desc">Описание:</label>
             <textarea class="form-control" name="desc"
-                      id="description">{{ old('desc', $animal->description) }}</textarea>
+                      id="description">{{ old('desc', $animal->desc) }}</textarea>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="cage_id">Клетка:</label>
             <select class="form-control" id="cage_id" name="cage_id">
-                <option value="" disabled selected>Выберите клетку:</option>
                 @foreach($cages as $cage)
-                    <option value="{{ $cage->id }}">{{ $cage->title }}</option>
+                    @if($animal->cage_id === $cage->id)
+                        <option value="{{ $cage->id }}" selected>{{ $cage->name }}</option>
+                    @else
+                        <option value="{{ $cage->id }}">{{ $cage->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
@@ -52,8 +55,9 @@
             <input class="form-control" type="file" name="image" id="image" accept="image/*">
         </div>
         <div class="btn-group">
-            <button type="submit">Редактировать животное</button>
-            <a class="btn btn-primary" href="{{ route('animals.index') }}">Назад к животным</a>
+            <a class="btn btn-primary" href="{{ route('animals.index') }}">К индексу животных</a>
+            <button class="btn btn-primary" type="submit">Сохранить изменения</button>
+            <a class="btn btn-primary" href="{{ route('animals.show', $cage->id) }}">Назад к животному</a>
         </div>
     </form>
 @endsection

@@ -15,14 +15,17 @@
         html, body {
             height: 100%;
         }
+
         .wrapper {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
         .content {
             flex: 1;
         }
+
         .footer {
             background-color: #f8f9fa;
             padding: 10px 0;
@@ -37,29 +40,31 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">🐘 Зоопарк</a>
                 <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('animals.index') }}">Животные</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('cages.index') }}">Индекс клеток</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('animals.index') }}">Индекс животных</a>
+                    </li>
                 </ul>
-            @auth
-                <form class="d-flex" method="POST" action="{{ route('logout') }}" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Выйти</button>
-                </form>
-            @endauth
+                @auth
+                    <form class="d-flex" method="POST" action="{{ route('logout') }}" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Выйти</button>
+                    </form>
+                @endauth
             </div>
         </nav>
     </header>
     <div class="wrapper">
-    <main class="content">
-        <div class="container">
-            @yield('content')
-        </div>
-    </main>
+        <main class="content">
+            <div class="container">
+                @yield('content')
+            </div>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
-            <span class="text-muted">© 2024 Зоопарк. Все права защищены.</span>
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">© 2024 Зоопарк. Все права защищены.</span>
+            </div>
+        </footer>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

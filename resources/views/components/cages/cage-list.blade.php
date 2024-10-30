@@ -10,9 +10,13 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($cages as $cage)
-            <x-cages.cage-list-item :id="$cage->id" :name="$cage->name"></x-cages.cage-list-item>
-        @endforeach
+        @if($cages->isEmpty())
+            <tr aria-colspan="{{ auth()->check() ? 2 : 3 }}">Нет данных</tr>
+        @else
+            @foreach ($cages as $cage)
+                <x-cages.cage-list-item :id="$cage->id" :name="$cage->name"></x-cages.cage-list-item>
+            @endforeach
+        @endif
         </tbody>
         {{ $cages->links() }}
     </table>
