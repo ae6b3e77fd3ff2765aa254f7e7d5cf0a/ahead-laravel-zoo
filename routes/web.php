@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::resource('cages', CageController::class);
-Route::resource('animals', AnimalController::class);
+Route::resource('cages', CageController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('cages', CageController::class)->only(['index', 'show']);
+Route::resource('animals', AnimalController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('animals', AnimalController::class)->only(['index', 'show']);
 Route::delete('animals/{id}/cage', [AnimalController::class, 'deleteFromCage'])->name('cages.animals.delete');
 
 
